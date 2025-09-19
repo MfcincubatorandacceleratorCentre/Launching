@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFC Incubation and Accelerator Centre</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style for the main container to transition smoothly */
+        #container {
+            transition: all 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+    <div id="container" class="text-center p-8 bg-gray-800 rounded-xl shadow-2xl max-w-sm mx-auto">
+        <!-- This content shows initially -->
+        <div id="initialContent">
+            <!-- Main Heading -->
+            <h1 class="text-4xl font-bold mb-4 text-cyan-400">Launch MFC incubation and accelerator centre</h1>
+            
+            <!-- Description -->
+            <p class="text-gray-300 mb-8">
+                Click the button below to launch.
+            </p>
+            
+            <!-- Launch Button -->
+            <button 
+                onclick="launchVideo()"
+                class="bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-bold py-3 px-8 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-cyan-300">
+                🚀 Launch
+            </button>
+        </div>
+        
+        <!-- Video player, hidden by default. UPDATE THE SRC ATTRIBUTE! -->
+        <video id="videoPlayer" controls class="hidden w-full rounded-lg" src="2.mp4"></video>
+
+    </div>
+
+    <script>
+        const videoPlayer = document.getElementById('videoPlayer');
+        const initialContent = document.getElementById('initialContent');
+        const container = document.getElementById('container');
+
+        // This function is called when the "Launch" button is clicked
+        function launchVideo() {
+            // Hide the initial text and button
+            initialContent.classList.add('hidden');
+
+            // Show the video player
+            videoPlayer.classList.remove('hidden');
+
+            // Expand the container to fit the video
+            container.classList.remove('max-w-sm');
+            container.classList.add('max-w-4xl');
+
+            // Automatically play the video
+            videoPlayer.play();
+
+            // Make the video fullscreen
+            if (videoPlayer.requestFullscreen) {
+                videoPlayer.requestFullscreen();
+            } else if (videoPlayer.mozRequestFullScreen) { // Firefox
+                videoPlayer.mozRequestFullScreen();
+            } else if (videoPlayer.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                videoPlayer.webkitRequestFullscreen();
+            } else if (videoPlayer.msRequestFullscreen) { // IE/Edge
+                videoPlayer.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
+
